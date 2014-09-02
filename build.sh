@@ -6,9 +6,10 @@ ARCH=linux-x64
 curl -fL -o monit.tar.gz http://mmonit.com/monit/dist/binary/${VERSION}/monit-${VERSION}-${ARCH}.tar.gz && \
 	tar xvf ./monit.tar.gz
 
-mkdir -p monit/{bin,etc}
-cp monit-${VERSION}/bin/monit ./monit/bin/
-cp monit-${VERSION}/conf/monitrc ./monit/etc/
+mkdir -p monit/{bin,etc/init.d}
+cp -v  monit-${VERSION}/bin/monit ./monit/bin/
+cp -v monit-${VERSION}/conf/monitrc ./monit/etc/
+cp -v init/monit ./monit/etc/init.d
 
 fpm -s dir -C monit  -p / \
     --name monit --version $VERSION \
